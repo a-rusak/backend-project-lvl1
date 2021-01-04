@@ -10,7 +10,8 @@ parserOptions:
   sourceType: module
 
 rules:
-  no-console: 0
   import/extensions: 0
-  no-await-in-loop: 0
   import/prefer-default-export: 0
+  no-await-in-loop: 0
+  no-console: 0
+  no-use-before-define: 0
