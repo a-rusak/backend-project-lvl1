@@ -15,7 +15,7 @@ export default (rules) => {
     const num1 = getRandomNumber(9);
     const num2 = getRandomNumber(9);
     const rightAnswer = getGCD(num1, num2);
-    console.log(`Question: ${num1} ${num2}`, rightAnswer);
+    console.log(`Question: ${num1} ${num2}`);
     const answer = getAnswerForQuestion('Your answer:');
 
     if (answer === rightAnswer.toString()) {
