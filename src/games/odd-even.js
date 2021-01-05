@@ -1,16 +1,14 @@
 import { getAnswerForQuestion } from '../cli.js';
 
-export default () => {
+export default (rules) => {
   let failCount = 0;
   let successCount = 0;
-  let userName = null;
   const Answer = {
     YES: 'yes',
     NO: 'no',
   };
 
-  function start(name) {
-    userName = name;
+  function start() {
     console.log('Answer "yes" if the number is even, otherwise answer "no".');
     next();
   }
@@ -33,28 +31,10 @@ export default () => {
       failCount += 1;
     }
 
-    check();
-  }
-
-  function check() {
-    if (failCount > 0) {
-      finishWithLoose();
-    } else if (successCount > 2) {
-      finishWithWin();
-    } else {
-      next();
-    }
-  }
-
-  function finishWithLoose() {
-    console.log(`Let's try again, ${userName}!`);
-  }
-
-  function finishWithWin() {
-    console.log(`Congratulations, ${userName}!`);
+    rules.check({ successCount, failCount }, next);
   }
 
   return {
-    start: (name) => start(name),
+    start: () => start(),
   };
 };
