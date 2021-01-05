@@ -30,7 +30,7 @@ export default (rules) => {
     const answer = getAnswerForQuestion('Your answer:');
 
     if (answer === rightAnswer.toString()) {
-      console.log('Correct');
+      console.log('Correct!');
       successCount += 1;
     } else {
       console.log(`'${answer}' is wrong answer ;(. Correct answer was '${rightAnswer}'.`);
