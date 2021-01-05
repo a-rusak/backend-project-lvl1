@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { getAnswerForQuestion } from '../src/cli.js';
-import game from '../src/games/game-calc.js';
+import game from '../src/games/game-gcd.js';
 import gameRules from '../src/index.js';
 import './brain-games.js';
 
