@@ -3,7 +3,7 @@ import getRandomNumber from '../utils/randomNumber.js';
 
 export default (rules) => {
   function start() {
-    console.log('Find the greatest common divisor of given numbers.');
+    console.log('What number is missing in the progression?');
     next();
   }
 
