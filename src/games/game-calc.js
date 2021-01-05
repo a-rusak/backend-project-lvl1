@@ -1,4 +1,5 @@
 import { getAnswerForQuestion } from '../cli.js';
+import getRandomNumber from '../utils/randomNumber.js';
 
 export default (rules) => {
   let failCount = 0;
@@ -10,18 +11,13 @@ export default (rules) => {
     next();
   }
 
-  function getNumber() {
-    return Math.round(Math.random() * 100);
-  }
-
   function getOperation() {
-    const index = Math.round(Math.random() * 2);
-    return Operations[index];
+    return Operations[getRandomNumber(2)];
   }
 
   function next() {
-    const num1 = getNumber();
-    const num2 = getNumber();
+    const num1 = getRandomNumber(99);
+    const num2 = getRandomNumber(99);
     const operation = getOperation();
     const expression = `${num1} ${operation} ${num2}`;
     // eslint-disable-next-line no-eval

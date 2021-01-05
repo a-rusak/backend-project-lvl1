@@ -1,4 +1,5 @@
 import { getAnswerForQuestion } from '../cli.js';
+import getRandomNumber from '../utils/randomNumber.js';
 
 export default (rules) => {
   let failCount = 0;
@@ -13,12 +14,8 @@ export default (rules) => {
     next();
   }
 
-  function getNumber() {
-    return Math.round(Math.random() * 100);
-  }
-
   function next() {
-    const num = getNumber();
+    const num = getRandomNumber(99);
     const rightAnswer = num % 2 === 0 ? Answer.YES : Answer.NO;
     console.log(`Question: ${num}`);
     const answer = getAnswerForQuestion('Your answer:');

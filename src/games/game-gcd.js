@@ -1,5 +1,6 @@
 import { getAnswerForQuestion } from '../cli.js';
 import getGCD from '../utils/gcd.js';
+import getRandomNumber from '../utils/randomNumber.js';
 
 export default (rules) => {
   let failCount = 0;
@@ -10,13 +11,9 @@ export default (rules) => {
     next();
   }
 
-  function getNumber() {
-    return Math.round(Math.random() * 9);
-  }
-
   function next() {
-    const num1 = getNumber();
-    const num2 = getNumber();
+    const num1 = getRandomNumber(9);
+    const num2 = getRandomNumber(9);
     const rightAnswer = getGCD(num1, num2);
     console.log(`Question: ${num1} ${num2}`, rightAnswer);
     const answer = getAnswerForQuestion('Your answer:');
