@@ -2,8 +2,6 @@ import { getAnswerForQuestion } from '../cli.js';
 import getRandomNumber from '../utils/randomNumber.js';
 
 export default (rules) => {
-  let failCount = 0;
-  let successCount = 0;
   const Operations = ['+', '-', '*'];
 
   function start() {
@@ -25,15 +23,7 @@ export default (rules) => {
     console.log(`Question: ${expression}`);
     const answer = getAnswerForQuestion('Your answer:');
 
-    if (answer === rightAnswer.toString()) {
-      console.log('Correct!');
-      successCount += 1;
-    } else {
-      console.log(`'${answer}' is wrong answer ;(. Correct answer was '${rightAnswer}'.`);
-      failCount += 1;
-    }
-
-    rules.check({ successCount, failCount }, next);
+    rules.check({ rightAnswer, answer }, next);
   }
 
   return {

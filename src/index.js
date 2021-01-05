@@ -10,10 +10,39 @@ export default {
     this.user_name = name;
   },
 
-  check({ successCount, failCount }, cb) {
-    if (failCount > MAX_FAIL_COUNT) {
+  get failCount() {
+    return this.fail_count;
+  },
+
+  set failCount(count) {
+    this.fail_count = count;
+  },
+
+  get successCount() {
+    return this.success_count;
+  },
+
+  set successCount(count) {
+    this.success_count = count;
+  },
+
+  reset() {
+    this.successCount = 0;
+    this.failCount = 0;
+  },
+
+  check({ rightAnswer, answer }, cb) {
+    if (answer === rightAnswer.toString()) {
+      console.log('Correct!');
+      this.successCount += 1;
+    } else {
+      console.log(`'${answer}' is wrong answer ;(. Correct answer was '${rightAnswer}'.`);
+      this.failCount += 1;
+    }
+
+    if (this.failCount > MAX_FAIL_COUNT) {
       this.finishWithLoose();
-    } else if (successCount >= MIN_SUCCESS_COUNT) {
+    } else if (this.successCount >= MIN_SUCCESS_COUNT) {
       this.finishWithWin();
     } else {
       cb();
@@ -22,9 +51,11 @@ export default {
 
   finishWithLoose() {
     console.log(`Let's try again, ${this.userName}!`);
+    this.reset();
   },
 
   finishWithWin() {
     console.log(`Congratulations, ${this.userName}!`);
+    this.reset();
   },
 };
