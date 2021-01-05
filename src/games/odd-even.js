@@ -1,4 +1,4 @@
-import readlineSync from 'readline-sync';
+import { getAnswerForQuestion } from '../cli.js';
 
 export default () => {
   let failCount = 0;
@@ -23,7 +23,7 @@ export default () => {
     const num = getNumber();
     const rightAnswer = num % 2 === 0 ? Answer.YES : Answer.NO;
     console.log(`Question: ${num}`);
-    const answer = readlineSync.question('Your answer: ');
+    const answer = getAnswerForQuestion('Your answer:');
 
     if (answer === rightAnswer) {
       console.log('Correct');
