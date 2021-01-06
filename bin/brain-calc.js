@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env node // eslint-disable-line
 
 import game from '../src/games/game-calc.js';
 import gameRules from '../src/index.js';
