@@ -2,7 +2,11 @@
 
 import game from '../src/games/game-calc.js';
 import rules from '../src/index.js';
-import { userName } from './brain-games.js';
+import { getUserName } from '../src/cli.js';
+
+console.log('Welcome to the Brain Games!');
+export const userName = getUserName();
+console.log(`Hello, ${userName}!`);
 
 const gameRules = rules();
 gameRules.setUserName(userName);
