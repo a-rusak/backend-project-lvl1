@@ -5,7 +5,7 @@ import rules from '../src/index.js';
 import { getUserName } from '../src/cli.js';
 
 console.log('Welcome to the Brain Games!');
-export const userName = getUserName();
+const userName = getUserName();
 console.log(`Hello, ${userName}!`);
 
 const gameRules = rules();
