@@ -7,11 +7,6 @@ export default (rules) => {
     NO: 'no',
   };
 
-  function start() {
-    console.log('Answer "yes" if the number is even, otherwise answer "no".');
-    next();
-  }
-
   function next() {
     const num = getRandomNumber(99);
     const rightAnswer = num % 2 === 0 ? Answer.YES : Answer.NO;
@@ -22,6 +17,9 @@ export default (rules) => {
   }
 
   return {
-    start: () => start(),
+    start() {
+      console.log('Answer "yes" if the number is even, otherwise answer "no".');
+      next();
+    },
   };
 };

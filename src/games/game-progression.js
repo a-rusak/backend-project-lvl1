@@ -2,11 +2,6 @@ import { getAnswerForQuestion } from '../cli.js';
 import getRandomNumber from '../utils/randomNumber.js';
 
 export default (rules) => {
-  function start() {
-    console.log('What number is missing in the progression?');
-    next();
-  }
-
   function createProgression(first, base, count) {
     return [...Array(count)].map((_, i) => first + base * i);
   }
@@ -33,6 +28,9 @@ export default (rules) => {
   }
 
   return {
-    start: () => start(),
+    start() {
+      console.log('What number is missing in the progression?');
+      next();
+    },
   };
 };

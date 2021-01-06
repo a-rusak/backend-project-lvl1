@@ -4,11 +4,6 @@ import getRandomNumber from '../utils/randomNumber.js';
 export default (rules) => {
   const Operations = ['+', '-', '*'];
 
-  function start() {
-    console.log('What is the result of the expression?');
-    next();
-  }
-
   function getOperation() {
     return Operations[getRandomNumber(2)];
   }
@@ -27,6 +22,9 @@ export default (rules) => {
   }
 
   return {
-    start: () => start(),
+    start() {
+      console.log('What is the result of the expression?');
+      next();
+    },
   };
 };

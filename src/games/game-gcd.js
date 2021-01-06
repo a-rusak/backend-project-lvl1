@@ -3,11 +3,6 @@ import getGCD from '../utils/gcd.js';
 import getRandomNumber from '../utils/randomNumber.js';
 
 export default (rules) => {
-  function start() {
-    console.log('Find the greatest common divisor of given numbers.');
-    next();
-  }
-
   function next() {
     const num1 = getRandomNumber(9);
     const num2 = getRandomNumber(9);
@@ -19,6 +14,9 @@ export default (rules) => {
   }
 
   return {
-    start: () => start(),
+    start() {
+      console.log('Find the greatest common divisor of given numbers.');
+      next();
+    },
   };
 };

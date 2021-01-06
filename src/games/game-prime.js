@@ -3,11 +3,6 @@ import isPrime from '../utils/isPrime.js';
 import getRandomNumber from '../utils/randomNumber.js';
 
 export default (rules) => {
-  function start() {
-    console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
-    next();
-  }
-
   function next() {
     const num = getRandomNumber(7) + 2;
     const rightAnswer = isPrime(num) ? 'yes' : 'no';
@@ -18,6 +13,9 @@ export default (rules) => {
   }
 
   return {
-    start: () => start(),
+    start() {
+      console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
+      next();
+    },
   };
 };
