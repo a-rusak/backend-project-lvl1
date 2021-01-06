@@ -1,61 +1,56 @@
-const MAX_FAIL_COUNT = 0;
-const MIN_SUCCESS_COUNT = 3;
+export default () => {
+  const MAX_FAIL_COUNT = 0;
+  const MIN_SUCCESS_COUNT = 3;
+  let userName = null;
+  let successCount = 0;
+  let failCount = 0;
 
-export default {
-  get userName() {
-    return this.user_name;
-  },
+  function reset() {
+    successCount = 0;
+    failCount = 0;
+  }
 
-  set userName(name) {
-    this.user_name = name;
-  },
+  function finishWithLoose() {
+    console.log(`Let's try again, ${userName}!`);
+    reset();
+  }
 
-  get failCount() {
-    return this.fail_count;
-  },
+  function finishWithWin() {
+    console.log(`Congratulations, ${userName}!`);
+    reset();
+  }
 
-  set failCount(count) {
-    this.fail_count = count;
-  },
-
-  get successCount() {
-    return this.success_count;
-  },
-
-  set successCount(count) {
-    this.success_count = count;
-  },
-
-  reset() {
-    this.successCount = 0;
-    this.failCount = 0;
-  },
-
-  check({ rightAnswer, answer }, cb) {
+  function check({ rightAnswer, answer }, cb) {
     if (answer === rightAnswer.toString()) {
       console.log('Correct!');
-      this.successCount += 1;
+      successCount += 1;
     } else {
       console.log(`'${answer}' is wrong answer ;(. Correct answer was '${rightAnswer}'.`);
-      this.failCount += 1;
+      failCount += 1;
     }
 
-    if (this.failCount > MAX_FAIL_COUNT) {
-      this.finishWithLoose();
-    } else if (this.successCount >= MIN_SUCCESS_COUNT) {
-      this.finishWithWin();
+    if (failCount > MAX_FAIL_COUNT) {
+      finishWithLoose();
+    } else if (successCount >= MIN_SUCCESS_COUNT) {
+      finishWithWin();
     } else {
       cb();
     }
-  },
+  }
 
-  finishWithLoose() {
-    console.log(`Let's try again, ${this.userName}!`);
-    this.reset();
-  },
+  return {
+    userName,
 
-  finishWithWin() {
-    console.log(`Congratulations, ${this.userName}!`);
-    this.reset();
-  },
+    setUserName(name) {
+      userName = name;
+    },
+
+    check({ rightAnswer, answer }, cb) {
+      check({ rightAnswer, answer }, cb);
+    },
+
+    reset() {
+      reset();
+    },
+  };
 };
